@@ -33,6 +33,10 @@ Configuration is handled as a single `endpoints.json` file. This is a JSON objec
 ```
 The above sample configuration defines four (4) unique endpoints available at `server` (static endpoint), `server/reload` (reload endpoint), `server/router` (redirect endpoint), and `server/plex` (redirect endpoint).
 
+#### Notes
+* Endpoints must be specified in all lowercase.
+* Do not prepend a `/` to any endpoints.
+
 ## Usage
 1. Clone this repository or download the zip bundle: `git clone https://github.com/EvilKanoa/go-server.git`
 1. Install NodeJS 12+
