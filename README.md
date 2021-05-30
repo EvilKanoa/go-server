@@ -2,6 +2,9 @@
 
 This project provides a simple HTTP server that can be configured to redirect each root path to a unique endpoint on a single address.
 
+#### Purpose
+I use this to easily access local servers and services on my home network. I have a go-server running on an LXC container with entries pointing to my router, NAS, media server, hypervisors, pihole, etc. Using a local DNS entry to takeover the `go.to` domain and point it to my go-server (thru pihole), I am now able to access my local servers in a browser by simply typing `go.to/plex` or `go.to/pihole` for example.
+
 ## Configuration
 Configuration is handled as a single `endpoints.json` file. This is a JSON object with each key representing a unique subpath. A special entry with key `/` is used to control behavior on the root page. Each object in the dictionary has an `action` field used to specify what action should be taken when a user navigates to that page.
 
