@@ -11,21 +11,24 @@ module.exports = () => {
   };
 
   app.use((req, _res, next) => {
-    if (req.method === "GET") {
-      const endpointId =
-        req.path === "/" || req.path.length === 0
-          ? "/"
-          : req.path.substring(1).toLowerCase();
-      req.go = data.endpoints[endpointId] || {
-        action: "unknown",
-        error: `No endpoint found for path: ${req.path}`,
-      };
-    } else {
+    if (req.method !== "GET") {
       req.go = {
         action: "unknown",
         error: "Cannot operate on non-GET requests",
       };
+
+      return next();
     }
+
+    const endpointId =
+      req.path === "/" || req.path.length === 0
+        ? "/"
+        : req.path.substring(1).toLowerCase();
+
+    req.go = data.endpoints[endpointId] || {
+      action: "unknown",
+      error: `No endpoint found for path: ${req.path}`,
+    };
 
     return next();
   });
@@ -34,7 +37,7 @@ module.exports = () => {
   morgan.token("go-data", (req) => JSON.stringify(req.go));
   app.use(
     morgan(
-      ":remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms\n\t:go-action :go-data"
+      ":remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms\n\t:go-action - :go-data"
     )
   );
 
@@ -48,7 +51,7 @@ module.exports = () => {
           console.error(`No file_path found for path: ${req.path}`);
           res.sendStatus(500);
         } else {
-          res.sendFile(req.go.file_path);
+          res.sendFile(req.go.file_path, { root: __dirname });
         }
       } else if (req.go.action === "redirect") {
         if (!req.go.redirect_url) {
