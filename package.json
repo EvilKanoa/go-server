@@ -1,0 +1,26 @@
+{
+  "name": "go-server",
+  "version": "1.0.0",
+  "description": "Provides a simple way to map a single HTTP server's paths as redirects including ports.",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development node index.js",
+    "lint": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvilKanoa/go-server.git"
+  },
+  "author": "EvilKanoa <kanoa@kanoa.ca>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/EvilKanoa/go-server/issues"
+  },
+  "homepage": "https://github.com/EvilKanoa/go-server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "prettier": "^2.3.0"
+  }
+}

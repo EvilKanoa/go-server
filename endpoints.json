@@ -1,0 +1,17 @@
+{
+  "/": {
+    "action": "static",
+    "file_path": "./endpoints.json"
+  },
+  "reload": {
+    "action": "reload"
+  },
+  "router": {
+    "action": "redirect",
+    "redirect_url": "https://192.168.1.1"
+  },
+  "plex": {
+    "action": "redirect",
+    "redirect_url": "https://192.168.1.150:8006"
+  }
+}
